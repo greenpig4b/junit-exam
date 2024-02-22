@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class BoardController {
 
     private final BoardRepository boardRepository;
-
+//   파일을 보내는 컨트롤러
     @GetMapping("/")
     public String index() {
+
         return "index";
     }
 
