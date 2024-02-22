@@ -34,9 +34,6 @@
                 });
     };
 
-
-
-
     <!-- tr 에 아이디주는 이유는 ajax로 삭제할때 필요-->
     $.ajax({
         url: "/api/boards",
@@ -65,7 +62,7 @@
             <td>${board.id}</td>
             <td>${board.title}</td>
             <td>${board.content}</td>
-            <td>홍길동</td>
+            <td>${board.author}</td>
             <td>
                 <div class="d-flex">
                     <button onclick="del(${board.id})" class="btn btn-danger">삭제</button>

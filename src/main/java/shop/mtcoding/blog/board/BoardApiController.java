@@ -2,10 +2,7 @@ package shop.mtcoding.blog.board;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,20 +12,20 @@ import java.util.List;
 public class BoardApiController {
     private final BoardRepository boardRepository;
 
+    //삭제
     @DeleteMapping("/api/boards/{id}")
     public ApiUtil<List<?>> deleteId(@PathVariable Integer id ,HttpServletResponse response){
         //제약조건
         Board board = boardRepository.selectOne(id);
         if (board == null){
             response.setStatus(404);
-            return new ApiUtil<>(404,"내용없습니다");
+            return new ApiUtil<>(404,"내용없습니다.");
         }
-
 
         boardRepository.deleteById(id);
         return new ApiUtil<>(null);
     }
-
+    //메인보드에 보드리스트 뿌리기
     @GetMapping("/api/boards")
     public ApiUtil<List<?>> findAll(){
         //상태코드와 메세지를 보내주는게 좋다
@@ -36,5 +33,18 @@ public class BoardApiController {
         //response.setStatus(400);
         return new ApiUtil<>(boardList); // MessagetConverter
     }
+    //글쓰기
+    @PostMapping("/api/boards")
+    public ApiUtil<List<?>> write(@RequestBody BoardRequest.WriteDTO requestDTO){
+
+        //유효성로직
+
+        //필수로직
+        boardRepository.insert(requestDTO);
+
+        return new ApiUtil<>(null);
+    }
+
+    //업데이트
 
 }
