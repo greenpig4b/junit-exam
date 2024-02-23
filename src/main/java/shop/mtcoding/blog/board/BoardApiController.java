@@ -46,5 +46,9 @@ public class BoardApiController {
     }
 
     //업데이트
-
+    @PutMapping("/api/boards/[id}")
+    public  ApiUtil<List<?>> update(@PathVariable Integer id, @RequestBody BoardRequest.UpdateDTO requestDTO){
+        boardRepository.upDateById(requestDTO, id);
+        return  new ApiUtil<>(null);
+    }
 }
