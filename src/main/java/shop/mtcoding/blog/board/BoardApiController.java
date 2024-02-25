@@ -25,6 +25,7 @@ public class BoardApiController {
         boardRepository.deleteById(id);
         return new ApiUtil<>(null);
     }
+
     //메인보드에 보드리스트 뿌리기
     @GetMapping("/api/boards")
     public ApiUtil<List<?>> findAll(){
@@ -33,6 +34,7 @@ public class BoardApiController {
         //response.setStatus(400);
         return new ApiUtil<>(boardList); // MessagetConverter
     }
+
     //글쓰기
     @PostMapping("/api/boards")
     public ApiUtil<List<?>> write(@RequestBody BoardRequest.WriteDTO requestDTO){

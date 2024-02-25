@@ -21,4 +21,5 @@ public class ApiUtil<T> {
         this.msg ="실패";
         this.body = null;
     }
+
 }
